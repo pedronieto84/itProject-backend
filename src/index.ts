@@ -34,6 +34,8 @@ interface Project{
     state: State
 }
 
+// added stupid comment
+
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 export const getProjects = functions.https.onRequest(async ( request, response ) => {
