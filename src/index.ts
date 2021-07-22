@@ -186,7 +186,7 @@ export const login = functions.https.onRequest(async ( request, response ) => {
             const doc = await db.collection('itAcademyUsers').where('email', '==', email)
             .where('password','==',password).get();
             if(doc.empty){
-                response.status(401).send({error: 'Email o password son incorrectes'});
+                return response.status(401).send({error: 'Email o password son incorrectes'});
             }else{
                 const object = { ...doc.docs[0].data()  };
                 const objectToSend = {
@@ -198,7 +198,7 @@ export const login = functions.https.onRequest(async ( request, response ) => {
                     admin: object.admin ? object.admin : false,
                     typeOfInstitution: object.typeOfInstitution ? object.typeOfInstitution : false
                 }
-                response.status(200).send(objectToSend);
+                return response.status(200).send(objectToSend);
             }
     })
     });
