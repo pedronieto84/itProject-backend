@@ -188,7 +188,17 @@ export const login = functions.https.onRequest(async ( request, response ) => {
             if(doc.empty){
                 response.status(401).send({error: 'Email o password son incorrectes'});
             }else{
-                response.status(200).send({user: doc.docs[0].data()});
+                const object = { ...doc.docs[0].data()  };
+                const objectToSend = {
+                    email: object.email,
+                    name: object.name,
+                    userId: object.userId,
+                    verified: object.verified ? object.verified : false,
+                    projectsPublished: object.projectsPublished ? object.projectsPublished : false,
+                    admin: object.admin ? object.admin : false,
+                    typeOfInstitution: object.typeOfInstitution ? object.typeOfInstitution : false
+                }
+                response.status(200).send(objectToSend);
             }
     })
     });
