@@ -52,9 +52,11 @@ export const getProjects = functions.https.onRequest(async ( request, response )
 export const getTechSet = functions.https.onRequest(async ( request, response ) => {
     cors(request, response, async ()=>{
        response.set('Access-Control-Allowed-Origin', '*')
-        const data = await db.collection('itAcademyTechSet').get();
-        const whatToReturn = data.docs.map( (eachDoc)=> { return eachDoc.data() }) as any[]
-        response.status(200).send(whatToReturn);
+        const data = await db.collection('itAcademyTechSet').doc('a').get()
+        const arrayOfTechSet = data.get('techSet')
+
+        
+        response.status(200).send(arrayOfTechSet);
     })
 });
 
