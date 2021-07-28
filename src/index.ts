@@ -42,10 +42,22 @@ interface Project{
 // // https://firebase.google.com/docs/functions/typescript
 export const getProjects = functions.https.onRequest(async ( request, response ) => {
         cors(request, response, async ()=>{
-           response.set('Access-Control-Allowed-Origin', '*')
+            response.set('Access-Control-Allowed-Origin', '*')
             const data = await db.collection('itAcademyProjects').get();
-            const whatToReturn = data.docs.map( (eachDoc)=> { return eachDoc.data() }) as Project[]
-            response.status(200).send(whatToReturn);
+            console.log('quey', request.query)
+            const userId = request.query.userId
+            console.log('userId', userId)
+            if(userId){
+                const whatToReturn = data.docs.map( (eachDoc) => { return eachDoc.data() })
+                .filter((each)=>{
+                    return each.ownerId === userId
+                }) as Project[]
+                response.status(200).send(whatToReturn);
+            }else{
+                const whatToReturn = data.docs.map( (eachDoc) => { return eachDoc.data() }) as Project[]
+                response.status(200).send(whatToReturn);
+            }
+            
         })
 });
 
@@ -53,9 +65,7 @@ export const getTechSet = functions.https.onRequest(async ( request, response ) 
     cors(request, response, async ()=>{
        response.set('Access-Control-Allowed-Origin', '*')
         const data = await db.collection('itAcademyTechSet').doc('a').get()
-        const arrayOfTechSet = data.get('techSet')
-
-        
+        const arrayOfTechSet = data.get('techSet') 
         response.status(200).send(arrayOfTechSet);
     })
 });
@@ -79,10 +89,8 @@ export const getProject = functions.https.onRequest(async ( request, response ) 
             const resp = data.data()
             response.status(200).send(resp);
         }else{
-        
-            response.status(401).send({ error: 'Aquest projecte no existeix' })
+            response.status(401).send( { error: 'Aquest projecte no existeix' } )
         }
-     
     })
 });
 
@@ -118,11 +126,12 @@ export const createProject = functions.https.onRequest(async ( request, response
 export const createUser = functions.https.onRequest(async ( request, response ) => {
 cors(request, response, async ()=>{
     const dataToAdd = request.body;
-   response.set('Access-Control-Allowed-Origin', '*')
+    response.set('Access-Control-Allowed-Origin', '*')
     const data = await db.collection('itAcademyUsers').add(dataToAdd)
     const id = data.id;
+    dataToAdd.userId = data.id;
     await db.collection('itAcademyUsers').doc(id).set({userId: id}, {merge: true})
-    response.status(200).send({userId: id});
+    response.status(200).send({user: dataToAdd});
 })
 });
 
@@ -136,9 +145,11 @@ export const updateProject = functions.https.onRequest(async ( request, response
 });
 
 export const updateUser = functions.https.onRequest(async ( request, response ) => {
-cors(request, response, async ()=>{
+    cors(request, response, async ()=>{
         const dataToAdd = request.body;
+        console.log('user received', dataToAdd)
         response.set('Access-Control-Allowed-Origin', '*')
+        console.log('userId', dataToAdd.userId)
         await db.collection('itAcademyUsers').doc(dataToAdd.userId).set(dataToAdd, {merge: true})
         response.status(200).send({userId: dataToAdd.userId});
 })
