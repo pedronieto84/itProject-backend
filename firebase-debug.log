@@ -1,0 +1,143 @@
+[debug] [2021-07-28T15:31:19.213Z] ----------------------------------------------------------------------
+[debug] [2021-07-28T15:31:19.215Z] Command:       /usr/local/lib/node_modules/node/lib/node_modules/node/bin/node /usr/local/bin/firebase deploy --only functions:createUser
+[debug] [2021-07-28T15:31:19.216Z] CLI Version:   7.15.1
+[debug] [2021-07-28T15:31:19.216Z] Platform:      darwin
+[debug] [2021-07-28T15:31:19.216Z] Node Version:  v10.15.3
+[debug] [2021-07-28T15:31:19.217Z] Time:          Wed Jul 28 2021 17:31:19 GMT+0200 (Central European Summer Time)
+[debug] [2021-07-28T15:31:19.217Z] ----------------------------------------------------------------------
+[debug] [2021-07-28T15:31:19.217Z] 
+[debug] [2021-07-28T15:31:19.226Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-07-28T15:31:19.226Z] > authorizing via signed-in user
+[debug] [2021-07-28T15:31:19.227Z] [iam] checking project asamblea-27a8d for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-07-28T15:31:19.229Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/asamblea-27a8d:testIamPermissions  
+
+[debug] [2021-07-28T15:31:20.729Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'asamblea-27a8d'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2021-07-28T15:31:29.027Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@types/cors": "^2.8.12",
+    "cors": "^2.8.5",
+    "firebase-admin": "^8.6.0",
+    "firebase-functions": "^3.3.0",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.2",
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2021-07-28T15:31:29.030Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/asamblea-27a8d/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-07-28T15:31:29.031Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/asamblea-27a8d/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-07-28T15:31:30.814Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:30.918Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2021-07-28T15:31:30.920Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/asamblea-27a8d/adminSdkConfig  
+ 
+[debug] [2021-07-28T15:31:31.467Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2021-07-28T15:31:31.472Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/asamblea-27a8d/configs  
+ 
+[debug] [2021-07-28T15:31:32.063Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (148.09 KB) for uploading
+[debug] [2021-07-28T15:31:32.834Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/asamblea-27a8d/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2021-07-28T15:31:33.446Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:33.447Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-a7b2338b-6e0f-4081-9949-a3d629c2e8a9/029aa58c-05a7-414e-aa75-4c391a7c68d5.zip?GoogleAccessId=service-1033867873374@gcf-admin-robot.iam.gserviceaccount.com&Expires=1627488093&Signature=HKl%2BtTv%2BBIjQDfLBMLRd%2FXvpIJa%2F%2BHxTRFz%2F7XokUtMZbBA6qZL4VzxIsR%2BeJ8KTtd2XJxm63pAWtGt02oA3GNosfdmVKONBNl1PSpb3fY9KzukBblkdbZK8pOv2rVNZlylfP2ddB2%2FJWjvqrvIlfvz%2BwpUkpvy5ydUusobtwEp4IiY0gmzkARwIWEkA25e51FrD4f5sT9JpH3Ict%2Fn3K3sVBj7XtLya%2FMv6ofLLr2rLxwrkuxAp23h49GBkl2Z4K9i78Kla4ASMzgX0zPHllRYTXOZ9elXOUeCtK1S5skMVtnSvwSx%2FMMkfR%2BxHcLbYTOkDMpKuWLZGQMqNz2h5vg%3D%3D  
+ <request body omitted>
+[debug] [2021-07-28T15:31:34.721Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[debug] [2021-07-28T15:31:34.725Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/asamblea-27a8d/locations/-/functions  
+ 
+[debug] [2021-07-28T15:31:35.515Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:35.518Z] > [functions] filtering triggers to: [
+  "projects/asamblea-27a8d/locations/us-central1/functions/createUser"
+]
+[info] i  functions: current functions in project: createProject(us-central1), createUser(us-central1), deleteProject(us-central1), deleteUser(us-central1), funcio2(us-central1), funcio3(us-central1), funcio4(us-central1), getProject(us-central1), getProjects(us-central1), getTechSet(us-central1), getUser(us-central1), getUsers(us-central1), helloWorld(us-central1), login(us-central1), updateProject(us-central1), updateUser(us-central1)
+[info] i  functions: uploading functions in project: createUser(us-central1)
+[info] i  functions: updating Node.js 8 function createUser(us-central1)...
+[debug] [2021-07-28T15:31:35.523Z] Trigger is:  {"httpsTrigger":{}}
+[debug] [2021-07-28T15:31:35.526Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/asamblea-27a8d/services/cloudscheduler.googleapis.com  
+ 
+[debug] [2021-07-28T15:31:36.625Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:36.627Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/asamblea-27a8d/locations/us-central1/functions/createUser {"updateMask":"sourceUploadUrl,name,labels,runtime,httpsTrigger"} 
+
+[debug] [2021-07-28T15:31:37.335Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:37.337Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/asamblea-27a8d/locations/-/functions  
+ 
+[debug] [2021-07-28T15:31:38.279Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:38.281Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:38.618Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:40.621Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:40.943Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:42.949Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:43.487Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:45.493Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:45.859Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:47.861Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:48.208Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:50.213Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:50.675Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:52.683Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:53.542Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:55.548Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:55.897Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:31:57.903Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:31:58.240Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:00.242Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:00.565Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:02.570Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:02.904Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:04.910Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:06.287Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:08.292Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:09.253Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:11.254Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:12.144Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:14.151Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:14.540Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:16.547Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:17.876Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:19.882Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:21.230Z] <<< HTTP RESPONSE 200
+[debug] [2021-07-28T15:32:23.235Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YXNhbWJsZWEtMjdhOGQvdXMtY2VudHJhbDEvY3JlYXRlVXNlci9NalFzV1VabUt6aw  
+ 
+[debug] [2021-07-28T15:32:24.856Z] <<< HTTP RESPONSE 200

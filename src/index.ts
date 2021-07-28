@@ -131,7 +131,7 @@ cors(request, response, async ()=>{
     const id = data.id;
     dataToAdd.userId = data.id;
     await db.collection('itAcademyUsers').doc(id).set({userId: id}, {merge: true})
-    response.status(200).send({user: dataToAdd});
+    response.status(200).send( dataToAdd);
 })
 });
 
